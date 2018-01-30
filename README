@@ -1,0 +1,6 @@
+This script contains two functions:
+htkread,read htk format binary file.
+htkwrite,write htk format binary file.
+
+Reference code:htkread.m,htkwrite.m from MSR Identity Toolbox v1.0: A MATLAB Toolbox for Speaker Recognition Research,
+https://www.microsoft.com/en-us/research/publication/msr-identity-toolbox-v1-0-a-matlab-toolbox-for-speaker-recognition-research-2/
