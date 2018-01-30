@@ -9,17 +9,24 @@ import struct
 import numpy as np
 
 def htkread(filename):
+    '''
+    nframe -- frame number
+    frate -- sample ratio
+    ndim -- feature dimension
+    feakind -- fea kind
+    '''
     fid = open(filename, 'rb')
     readbytes = fid.read()
     fid.close()
     nframe = readbytes[0:4]
+    #unpack return a tuple,whether it's necessarily to reversed the byte array depend on your machine.
     nframe,= struct.unpack('i',bytes(reversed(nframe)))
     frate  = readbytes[4:8]
     frate, = struct.unpack('i',bytes(reversed(frate)))
-    nfeat  = readbytes[8:10]
-    nfeat, = struct.unpack('h',bytes(reversed(nfeat)))
-    nfeat /= 4
-    nfeat = int(nfeat)
+    ndim  = readbytes[8:10]
+    ndim, = struct.unpack('h',bytes(reversed(nfeat)))
+    ndim /= 4
+    ndim = int(nfeat)
     nframe = nframe
     data = np.zeros((nfeat,nframe))
     feakind = readbytes[10:12]
@@ -35,6 +42,12 @@ def htkread(filename):
     return [data,frate,feakind]
 
 def htkwrite(htkfile, data, frate, feakind):
+    '''
+    nframe -- frame number
+    frate -- sample ratio
+    ndim -- feature dimension
+    feakind -- fea kind
+    '''
     f = open(htkfile,'wb')
     [ndim,nframe] = np.shape(data)
     nframeBytes = struct.pack('i',nframe)
