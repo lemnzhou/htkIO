@@ -24,9 +24,9 @@ def htkread(filename):
     frate  = readbytes[4:8]
     frate, = struct.unpack('i',bytes(reversed(frate)))
     ndim  = readbytes[8:10]
-    ndim, = struct.unpack('h',bytes(reversed(nfeat)))
+    ndim, = struct.unpack('h',bytes(reversed(ndim)))
     ndim /= 4
-    ndim = int(nfeat)
+    ndim = int(ndim)
     nframe = nframe
     data = np.zeros((nfeat,nframe))
     feakind = readbytes[10:12]
